@@ -207,7 +207,7 @@
 }
 
 .hiring-link:hover {
-  color: var(--primary-blue);
+  color: var(--jtm-highlight-hover);
 }
 
 /* Responsive adjustments */

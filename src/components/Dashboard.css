@@ -43,6 +43,15 @@
   font-weight: 500;
 }
 
+.section-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--jtm-highlight);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-1);
+}
+
 .role-lbl {
   font-size: 0.75rem;
   font-weight: 700;

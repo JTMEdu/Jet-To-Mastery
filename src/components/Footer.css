@@ -88,7 +88,7 @@
 }
 
 .footer-links a:hover {
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
 }
 
 .footer-bottom {
@@ -114,7 +114,7 @@
 }
 
 .footer-legal a:hover {
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
 }
 
 @media (max-width: 1024px) {

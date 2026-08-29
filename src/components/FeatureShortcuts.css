@@ -52,7 +52,7 @@
 }
 
 .shortcut-item:hover .shortcut-name {
-  color: var(--primary-blue);
+  color: var(--jtm-highlight-hover);
 }
 
 @media (max-width: 1024px) {

@@ -77,17 +77,15 @@
   z-index: 2;
 }
 
-.banner-badge {
-  display: inline-block;
-  align-self: flex-start;
+.program-badge {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
   background-color: var(--pure-white);
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: var(--radius-sm);
-  margin-bottom: var(--spacing-3);
-  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: var(--spacing-2);
 }
 
 .banner-headline {

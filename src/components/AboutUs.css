@@ -37,12 +37,12 @@
   gap: var(--spacing-3);
 }
 
-.section-tag {
+.about-subtitle {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
 }
 
 .about-description {
