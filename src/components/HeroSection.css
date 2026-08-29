@@ -1,0 +1,548 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--spacing-16);
+  padding-bottom: var(--spacing-12);
+}
+
+.hero-bg-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--light-blue);
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.shape-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: var(--pure-white);
+}
+
+.shape-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Balanced columns ratio */
+  gap: var(--spacing-8);
+  align-items: center;
+}
+
+.hero-title {
+  margin-bottom: var(--spacing-4);
+}
+
+.text-gradient {
+  background: var(--royal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  max-width: 90%;
+  margin-bottom: var(--spacing-6);
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-8);
+}
+
+.hero-stats {
+  display: flex;
+  gap: var(--spacing-6);
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--spacing-6);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ========================================= */
+/* HERO VISUAL AREA - LOGO & FLOATING CARDS  */
+/* ========================================= */
+
+.hero-visual {
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* CENTRAL REPLACEABLE IMAGE BADGE */
+.central-logo-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  z-index: 10;
+}
+
+@keyframes logo-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+@keyframes spin-slow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  0% { transform: translate(-50%, -50%) rotate(360deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160%;
+  height: 160%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(220, 230, 255, 0.5) 40%, transparent 75%);
+  filter: blur(45px);
+  opacity: 0.65;
+  animation: pulse-glow 4s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes spin-atom-1 {
+  0% { transform: translate(-50%, -50%) rotateZ(0deg) rotateX(70deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateZ(0deg) rotateX(70deg) rotateZ(360deg); }
+}
+
+@keyframes spin-atom-2 {
+  0% { transform: translate(-50%, -50%) rotateZ(60deg) rotateX(70deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateZ(60deg) rotateX(70deg) rotateZ(360deg); }
+}
+
+@keyframes spin-atom-3 {
+  0% { transform: translate(-50%, -50%) rotateZ(120deg) rotateX(70deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateZ(120deg) rotateX(70deg) rotateZ(360deg); }
+}
+
+.atom-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ring-1 {
+  animation: spin-atom-1 10s linear infinite;
+  border: 2px solid rgba(139, 0, 0, 0.8); /* Dark Red */
+}
+
+.ring-2 {
+  animation: spin-atom-2 10s linear infinite;
+  border: 2px solid rgba(0, 0, 139, 0.8); /* Dark Blue */
+}
+
+.ring-3 {
+  animation: spin-atom-3 10s linear infinite;
+  border: 2px solid rgba(0, 100, 0, 0.8); /* Dark Green */
+}
+
+.orbit-node {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--pure-white, #ffffff);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.node-red {
+  box-shadow: 0 0 12px 3px rgba(220, 38, 38, 0.9);
+}
+
+.node-blue {
+  box-shadow: 0 0 12px 3px rgba(37, 99, 235, 0.9);
+}
+
+.node-green {
+  box-shadow: 0 0 12px 3px rgba(22, 163, 74, 0.9);
+}
+
+.logo-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* border-radius: var(--radius-lg); Flexible rounded corners */
+  background-color: transparent;/* var(--pure-white); */
+  /* border: 4px solid var(--border-light); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: var(--shadow-xl); */
+  overflow: visible;
+  animation: logo-float 4s ease-in-out infinite;
+}
+
+.central-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.3));
+}
+
+/* FLOATING COMMENTS VIEWPORT WRAPPER */
+.comment-wrapper {
+  position: absolute;
+  z-index: 20;
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+/* Five Position Quadrants placement around center logo */
+/* Pushed outwards to ensure the atom design remains visible */
+.pos-top {
+  top: -5%;
+  left: calc(50% - 115px); /* Centered horizontally (230px card width) */
+}
+
+.pos-tl {
+  top: 15%;
+  left: -40px;
+}
+
+.pos-tr {
+  top: 12%;
+  right: -40px;
+}
+
+.pos-bl {
+  bottom: 15%;
+  left: -40px;
+}
+
+.pos-br {
+  bottom: 12%;
+  right: -40px;
+}
+
+/* Entry/Exit styles triggers */
+.comment-wrapper.fade-out {
+  pointer-events: none;
+}
+
+.comment-wrapper.fade-in {
+  /* Offset applied in JS */
+}
+
+/* Bobbing physics applied inside the wrapper to avoid overriding JS positioning */
+@keyframes bob {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.comment-bubble-card {
+  display: flex;
+  gap: 12px;
+  width: 230px; /* Compact width */
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  animation: bob ease-in-out infinite;
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* Depth differences for organic layering */
+.pos-top .comment-bubble-card {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.pos-tr .comment-bubble-card {
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  margin-top: -2px;
+}
+.pos-br .comment-bubble-card {
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+.pos-bl .comment-bubble-card {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.09);
+  margin-top: 2px;
+}
+.pos-tl .comment-bubble-card {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.11);
+}
+
+/* Reduced motion support: remove bobbing animation */
+@media (prefers-reduced-motion: reduce) {
+  .comment-bubble-card {
+    animation: none !important;
+  }
+  .comment-wrapper {
+    transition: none !important;
+  }
+}
+
+.comment-bubble-card:hover {
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Profile Picture layout */
+.comment-profile {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.comment-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.comment-avatar-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  color: var(--pure-white);
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-sm);
+  display: none; /* Controlled by React image error callback */
+}
+
+/* Text structure styling */
+.comment-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+}
+
+.comment-user-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.comment-body-text {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #475569;
+  font-style: italic;
+}
+
+.comment-reaction {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6875rem;
+  margin-top: 2px;
+  color: #64748b;
+}
+
+.reaction-thumbs {
+  opacity: 0.9;
+}
+
+.reaction-count {
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* ========================================= */
+/* RESPONSIVE LAYOUT ADJUSTMENTS             */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-6);
+  }
+  
+  .hero-subtitle {
+    margin: 0 auto var(--spacing-6);
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+  
+  /* Stacking Hero Visual below stats */
+  .hero-visual {
+    height: 480px;
+    max-width: 480px;
+    margin: var(--spacing-6) auto 0 auto;
+  }
+
+  /* Tablet shows exactly 3 comments (hides pos-tr and pos-bl) */
+  .pos-tr,
+  .pos-bl {
+    display: none;
+  }
+
+  .pos-top {
+    top: -5%;
+    left: calc(50% - 115px);
+  }
+
+  .pos-tl {
+    top: 10%;
+    left: -30px;
+  }
+
+  .pos-br {
+    bottom: 10%;
+    right: -30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-8);
+  }
+
+  .hero-visual {
+    height: 340px;
+    max-width: 100%;
+    margin-top: var(--spacing-4);
+  }
+
+  /* Scaled Central image container */
+  .central-logo-badge {
+    width: 160px;
+    height: 160px;
+  }
+
+  /* Mobile viewport shows exactly 2 comments in diagonal to prevent overlap */
+  .pos-top,
+  .pos-tr,
+  .pos-bl {
+    display: none;
+  }
+
+  .pos-tl {
+    top: 2%;
+    left: -20px;
+  }
+
+  .pos-br {
+    bottom: 2%;
+    right: -20px;
+  }
+
+  .comment-bubble-card {
+    width: 190px;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .comment-profile {
+    width: 28px;
+    height: 28px;
+  }
+
+  .comment-user-name {
+    font-size: 0.75rem;
+  }
+
+  .comment-body-text {
+    font-size: 0.6875rem;
+  }
+}
+@ k e y f r a m e s   b l i n k   {   5 0 %   {   b o r d e r - c o l o r :   t r a n s p a r e n t ;   }   }  
+ 

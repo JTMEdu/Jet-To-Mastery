@@ -1,0 +1,36 @@
+.odometer-container {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums; /* Critical for fixed uniform digit widths */
+  line-height: 1;
+}
+
+.digit-viewport {
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.1em; /* Fits the exact line height of the character */
+  overflow: hidden;
+  position: relative;
+  vertical-align: text-bottom;
+}
+
+.digit-strip {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.digit-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.1em;
+  line-height: 1.1em;
+  flex: 0 0 1.1em; /* Do not shrink, guarantees each digit is exactly viewport height */
+}
+
+.odometer-static-char {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  line-height: 1;
+}

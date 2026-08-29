@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "category": "CODING",
+    "title": "Turn Problems Into Solutions.",
+    "quote": "Every problem you solve today makes you a better developer tomorrow.",
+    "description": "Master Data Structures & Algorithms through structured practice and real interview-level problems.",
+    "cta": "Start Coding",
+    "link": "/programs/dsa",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80"
+  },
+  {
+    "id": 2,
+    "category": "PLACEMENT",
+    "title": "Don't Just Prepare. Get Placement Ready.",
+    "quote": "Your dream job starts with the preparation you do today.",
+    "description": "Prepare for aptitude, coding rounds, technical interviews and placement assessments.",
+    "cta": "Prepare for Placements",
+    "link": "/programs/placement",
+    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80"
+  },
+  {
+    "id": 3,
+    "category": "DEVELOPMENT",
+    "title": "From Writing Code to Building Products.",
+    "quote": "Don't just learn technology. Build something people can use.",
+    "description": "Learn frontend, backend, databases and real-world development through practical projects.",
+    "cta": "Explore Full Stack",
+    "link": "/programs/full-stack",
+    "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+  },
+  {
+    "id": 4,
+    "category": "APTITUDE",
+    "title": "Think Faster. Solve Smarter.",
+    "quote": "Speed matters. Accuracy matters more.",
+    "description": "Build the quantitative, logical and verbal reasoning skills needed for placement tests.",
+    "cta": "Practice Aptitude",
+    "link": "/programs/aptitude",
+    "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=80"
+  },
+  {
+    "id": 5,
+    "category": "INTERVIEW",
+    "title": "Walk Into Interviews With Confidence.",
+    "quote": "Confidence comes from knowing you've prepared.",
+    "description": "Practice technical questions, mock interviews and the skills recruiters actually evaluate.",
+    "cta": "Start Interview Prep",
+    "link": "/programs/interview-prep",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1920&q=80"
+  }
+]

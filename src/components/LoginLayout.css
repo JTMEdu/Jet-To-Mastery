@@ -1,0 +1,418 @@
+/* Compact Authentication UI Layout & Styles */
+.login-layout-page {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background-color: var(--light-gray-bg);
+  display: flex;
+}
+
+.login-layout-container {
+  display: grid;
+  grid-template-columns: 42% 58%; /* Left panel is 42% of screen width */
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+}
+
+.login-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  height: 100%;
+  overflow-y: auto;
+  background-color: var(--pure-white);
+}
+
+.form-inner-wrapper {
+  width: 100%;
+  max-width: 400px; /* Form max-width is 400px */
+}
+
+/* Card Styling - Compact margins */
+.login-card {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.login-card-header {
+  margin-bottom: 24px; /* Subtitle to email: 24px */
+}
+
+.login-logo-img {
+  height: 60px; /* Logo is properly contained and 60px tall */
+  width: auto;
+  margin-bottom: 16px; /* Logo to heading: 16px */
+  display: block;
+  object-fit: contain;
+}
+
+.login-heading {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+.login-subtitle {
+  font-size: 0.875rem;
+  margin-top: 6px; /* Heading to subtitle: 6px */
+  line-height: 1.4;
+}
+
+/* Form Groups & Inputs spacing */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 18px; /* Email to password: 18px */
+}
+
+.form-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background-color: var(--pure-white);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-error {
+  border-color: #EF4444 !important;
+}
+
+.error-text {
+  color: #EF4444;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Password positioning overrides */
+.password-input-wrapper {
+  margin-bottom: 16px; /* Password to actions: 16px */
+}
+
+/* Actions Row spacing */
+.form-actions-row {
+  margin-bottom: 22px; /* Actions to login button: 22px */
+}
+
+.checkbox-container {
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.forgot-password-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.forgot-password-link:hover {
+  color: var(--primary-blue);
+}
+
+.btn-submit {
+  padding: 11px 24px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Social Buttons spacing */
+.divider {
+  position: relative;
+  text-align: center;
+  margin-top: 18px; /* Button to divider: 18px */
+  margin-bottom: 18px; /* Divider to Google: 18px */
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--border-light);
+  z-index: 1;
+}
+
+.divider-text {
+  position: relative;
+  background-color: var(--pure-white);
+  padding: 0 var(--spacing-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.google-btn {
+  background-color: var(--pure-white) !important;
+  color: var(--text-dark) !important;
+  border: 1.5px solid var(--border-light) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  padding: 10px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-bottom: 18px; /* Google to create account: 18px */
+}
+
+.google-btn:hover {
+  background-color: var(--light-gray-bg) !important;
+  border-color: var(--text-muted) !important;
+}
+
+/* Account Footer Actions */
+.login-card-footer {
+  margin-bottom: 16px; /* Create account to portals: 16px */
+  font-size: 0.875rem;
+}
+
+.auth-footer-link {
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.auth-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Switch role portals links footer (Compact design) */
+.role-portal-links {
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.portal-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.portal-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.portal-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.portal-link:hover {
+  text-decoration: underline;
+  color: var(--text-dark);
+}
+
+.portal-divider {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+/* ========================================= */
+/* BRAND ILLUSTRATION PANEL (RIGHT SIDE)     */
+/* ========================================= */
+
+.login-visual-side {
+  position: relative;
+  height: 100vh;
+}
+
+.auth-brand-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--royal-gradient);
+  color: var(--pure-white);
+  padding: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brand-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(37, 99, 235, 0.4) 100%);
+  z-index: 1;
+}
+
+.brand-panel-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-logo-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.brand-core-message {
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.brand-title {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.brand-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Features List styling (3 items, very compact) */
+.brand-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: var(--spacing-2);
+}
+
+.brand-feature-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.brand-feature-icon {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-feature-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.brand-feature-desc {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+/* Metrics Row (Small and compact) */
+.brand-footer-stats {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 16px;
+}
+
+.brand-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-stat-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.brand-stat-label {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ========================================= */
+/* RESPONSIVE LAYOUT OVERRIDES               */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .login-layout-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .login-visual-side {
+    display: none; /* Hides large branding panel on tablet & mobile */
+  }
+  
+  .login-form-side {
+    background-color: var(--light-gray-bg);
+  }
+}

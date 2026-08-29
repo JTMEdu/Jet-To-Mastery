@@ -1,0 +1,224 @@
+/* Partner Companies Section Styles */
+.partners-section {
+  border-bottom: 1px solid var(--border-light);
+  overflow: hidden;
+  background-color: var(--pure-white);
+}
+
+.partners-section .section-title {
+  margin-bottom: var(--spacing-1);
+}
+
+.partners-section .section-subtitle {
+  margin-bottom: var(--spacing-6);
+}
+
+/* Marquee Viewport Container */
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: var(--spacing-4) 0;
+  margin: 0 auto;
+}
+
+/* Masking Gradient Overlays for glass/fade-out edge effect */
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--pure-white) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--pure-white) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* Marquee Track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-content {
+  display: flex;
+  gap: var(--spacing-4);
+  padding-right: var(--spacing-4); /* Matches the gap so spacing between tracks is identical */
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+/* Hover play state */
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-content {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+    padding: var(--spacing-2);
+  }
+  .marquee-container::before,
+  .marquee-container::after {
+    display: none;
+  }
+}
+
+/* Company Card Styling */
+.company-card {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--spacing-4);
+  background-color: var(--pure-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.company-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-blue);
+}
+
+/* Logo placement styling */
+.company-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.company-logo-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--light-blue);
+  color: var(--logo-color);
+  flex-shrink: 0;
+}
+
+.logo-icon-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.logo-icon {
+  stroke-width: 2.25px;
+}
+
+.company-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.company-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.company-industry {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* Body content */
+.company-body {
+  margin-bottom: var(--spacing-3);
+  flex-grow: 1;
+}
+
+.company-desc {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-2);
+}
+
+.company-tags {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  background-color: var(--light-blue);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(37, 99, 235, 0.08);
+}
+
+/* Footer card placement info */
+.company-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--spacing-3);
+  margin-top: auto;
+}
+
+.placement-stat {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #10B981; /* Green color representing placements */
+}
+
+.hiring-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.hiring-link:hover {
+  color: var(--primary-blue);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .company-card {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .company-card {
+    width: 260px;
+  }
+}

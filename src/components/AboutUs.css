@@ -1,0 +1,244 @@
+/* About Us Section Styles */
+.about-section {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--pure-white);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .about-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--spacing-8);
+  align-items: center;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.section-tag {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-blue);
+}
+
+.about-description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.focus-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-3);
+}
+
+.focus-item {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.focus-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-blue);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.focus-item-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.focus-item-desc {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Right Column Statistics Container */
+.about-stats-container {
+  display: flex;
+  justify-content: center;
+}
+
+.stats-glass-card {
+  width: 100%;
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.about-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.about-brand-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  animation: aboutLogoSpin 18s linear infinite;
+  margin-bottom: var(--spacing-1);
+}
+
+.about-brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+@keyframes aboutLogoSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-brand-logo {
+    animation: none;
+  }
+}
+
+.about-stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.about-stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--pure-white);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.about-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.about-stat-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background-color: var(--light-blue);
+  flex-shrink: 0;
+}
+
+.about-stat-icon.text-blue {
+  color: var(--primary-blue);
+}
+
+.about-stat-icon.text-green {
+  color: #10B981;
+  background-color: #ECFDF5;
+}
+
+.about-stat-icon.text-gold {
+  color: #D97706;
+  background-color: #FEF3C7;
+}
+
+.about-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.about-stat-label {
+  font-size: 0.8125rem;
+}
+
+/* Highlights pill row */
+.highlights-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  justify-content: center;
+  margin-top: var(--spacing-2);
+}
+
+.highlight-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2) !important;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+.highlight-pill svg {
+  flex-shrink: 0;
+}
+
+.text-orange {
+  color: #F97316;
+}
+
+.text-purple {
+  color: #8B5CF6;
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 1024px) {
+  .about-grid {
+    gap: var(--spacing-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+}
+

@@ -1,0 +1,71 @@
+.shortcuts-section {
+  padding-top: 0;
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+}
+
+.shortcuts-card {
+  padding: var(--spacing-6);
+}
+
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-6) var(--spacing-4);
+}
+
+.shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-3);
+  group: hover;
+}
+
+.shortcut-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background-color: var(--light-blue);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border-light);
+}
+
+.shortcut-item:hover .shortcut-icon-wrapper {
+  background-color: var(--primary-blue);
+  color: var(--pure-white);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.shortcut-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: color var(--transition-fast);
+}
+
+.shortcut-item:hover .shortcut-name {
+  color: var(--primary-blue);
+}
+
+@media (max-width: 1024px) {
+  .shortcuts-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .shortcuts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .shortcuts-card {
+    padding: var(--spacing-4);
+  }
+}

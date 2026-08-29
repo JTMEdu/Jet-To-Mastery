@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "name": "Arjun Mehta",
+    "role": "Lead Technical Trainer",
+    "experience": "6+ Years Experience",
+    "expertise": ["Java", "DSA", "Programming"],
+    "bio": "Ex-Amazon software engineer. Over 6 years of training students to solve complex algorithmic problems and ace technical rounds.",
+    "image": "1737942161309.jpg",
+    "linkedin": "#",
+    "github": ""
+  },
+  {
+    "id": 2,
+    "name": "Neha Sharma",
+    "role": "Backend Architecture Expert",
+    "experience": "8+ Years Experience",
+    "expertise": ["Node.js", "System Design", "Cloud"],
+    "bio": "Specialist in scaling distributed systems. Teaches architecture fundamentals that companies test in SDE-2 interviews.",
+    "image": "1737988472382.jpg",
+    "linkedin": "#",
+    "github": ""
+  },
+  {
+    "id": 3,
+    "name": "Rohit Verma",
+    "role": "Full Stack Mentor",
+    "experience": "5+ Years Experience",
+    "expertise": ["React", "Spring Boot", "Databases"],
+    "bio": "Teaches end-to-end web engineering. Passionate about project-based learning and standard web design systems.",
+    "image": "1738231306033.jpg",
+    "linkedin": "#",
+    "github": ""
+  },
+  {
+    "id": 4,
+    "name": "Priya Patel",
+    "role": "AI & Data Science Instructor",
+    "experience": "4+ Years Experience",
+    "expertise": ["Python", "ML", "SQL"],
+    "bio": "Bridges mathematics with real-world applications. Helps students master data analytics and production machine learning.",
+    "image": "1738231887715.jpg",
+    "linkedin": "#",
+    "github": ""
+  },
+  {
+    "id": 5,
+    "name": "Karan Johar",
+    "role": "Aptitude & Placement Coach",
+    "experience": "10+ Years Experience",
+    "expertise": ["Aptitude", "Reasoning", "Soft Skills"],
+    "bio": "Trained over 50k learners on screening-level logic, placement strategy, resume reviews, and HR behavioral scenarios.",
+    "image": "1738250005694.jpg",
+    "linkedin": "#",
+    "github": ""
+  },
+  {
+    "id": 6,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Web Development", "JavaScript"],
+    "bio": "Expert technical trainer specializing in web technologies.",
+    "image": "1738251224122.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 7,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Backend Systems", "Go"],
+    "bio": "Focuses on high-performance backend systems and concurrency.",
+    "image": "1738251675074.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 8,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Frontend Engineering", "React"],
+    "bio": "Passionate about building intuitive and accessible user interfaces.",
+    "image": "1738251827007.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 9,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Cloud Computing", "AWS"],
+    "bio": "Helping students understand modern cloud architectures and deployment.",
+    "image": "1738298444710.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 10,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Mobile Development", "Flutter"],
+    "bio": "Cross-platform mobile development expert with a focus on performance.",
+    "image": "1738301149253.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 11,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["DevOps", "CI/CD"],
+    "bio": "Teaches the fundamentals of continuous integration and delivery pipelines.",
+    "image": "1741096584219.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 12,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Cybersecurity", "Network"],
+    "bio": "Specializes in application security and defensive programming.",
+    "image": "trainer-12.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 13,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Data Engineering", "Spark"],
+    "bio": "Expert in big data processing and ETL pipeline design.",
+    "image": "trainer-13.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 14,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["Game Development", "Unity"],
+    "bio": "Teaches graphics programming and game physics fundamentals.",
+    "image": "trainer-14.jpg",
+    "linkedin": "",
+    "github": ""
+  },
+  {
+    "id": 15,
+    "name": "Trainer Name",
+    "role": "Senior Technical Trainer",
+    "experience": "Experience not provided",
+    "expertise": ["UI/UX Design", "Figma"],
+    "bio": "Bridges the gap between design concepts and technical implementation.",
+    "image": "trainer-15.jpg",
+    "linkedin": "",
+    "github": ""
+  }
+]
