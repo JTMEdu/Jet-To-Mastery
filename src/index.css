@@ -4,11 +4,13 @@
   /* Color Palette */
   --pure-white: #FFFFFF;
   --light-blue: #F5F9FF;
-  --primary-blue: #2563EB;
+  --primary-blue: #3f74e7;
   --primary-blue-hover: #1D4ED8;
   --dark-blue: #1E3A8A;
-  --text-dark: #0F172A;
+  --text-dark: #001c55;
   --text-muted: #64748B;
+  --jtm-highlight: #397bff;
+  --jtm-highlight-hover: #1e4bb8;
   --border-light: #E2E8F0;
   --royal-gradient: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
   --light-gray-bg: #F8FAFC;
@@ -166,7 +168,7 @@ img {
 
 .btn-white {
   background-color: var(--pure-white);
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
   box-shadow: var(--shadow-md);
 }
 

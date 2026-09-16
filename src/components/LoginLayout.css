@@ -133,7 +133,7 @@
 }
 
 .forgot-password-link:hover {
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
 }
 
 .btn-submit {
@@ -205,7 +205,7 @@
 
 .auth-footer-link {
   font-weight: 600;
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
 }
 
 .auth-footer-link:hover {
@@ -233,6 +233,14 @@
   display: flex;
   gap: 8px;
   align-items: center;
+}
+
+.back-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--jtm-highlight);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 .portal-link {

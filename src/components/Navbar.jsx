@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
-import siteLogo from '../assets/logo.png';
+import bannerImg from '../assets/banner.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -29,10 +29,9 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Logo */}
+        {/* Navbar Banner Brand */}
         <a href="#" className="navbar-logo">
-          <img src={siteLogo} alt="Jet to Mastery Logo" className="navbar-logo-img" />
-          <span className="navbar-logo-text">Jet to Mastery</span>
+          <img src={bannerImg} alt="Jet to Mastery" className="navbar-banner-img" />
         </a>
 
         {/* Desktop Navigation */}
@@ -51,9 +50,9 @@ const Navbar = () => {
           </button>
           <Link to="/login" className="login-link">Login</Link>
           <a href="#" className="btn btn-primary btn-sm">Get Started</a>
-          
-          <button 
-            className="mobile-menu-btn" 
+
+          <button
+            className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

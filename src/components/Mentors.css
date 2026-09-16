@@ -186,7 +186,7 @@
 .mentor-role {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--primary-blue);
+  color: var(--jtm-highlight);
   letter-spacing: 0.02em;
 }
 
@@ -230,7 +230,7 @@
 }
 
 .linkedin-link:hover {
-  color: var(--primary-blue);
+  color: var(--jtm-highlight-hover);
 }
 
 /* Dots */

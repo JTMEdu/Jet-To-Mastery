@@ -184,7 +184,7 @@ code {
   line-height: 1.6;
 }
 
-.code-keyword { color: var(--primary-blue); font-weight: bold; }
+.code-keyword { color: var(--jtm-highlight); font-weight: bold; }
 .code-function { color: #8B5CF6; }
 
 .editor-footer {

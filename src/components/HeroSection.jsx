@@ -1,127 +1,164 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Rocket } from 'lucide-react';
 import './HeroSection.css';
-import Odometer from './Odometer';
-import heroCenterImage from '../assets/logo.png';
+import jtmLogo from '../assets/logo.png';
+import studentPhoto from '../assets/logo2.png';
 
-// Pool of 12 realistic social-proof comments
 const allComments = [
   { id: 0, name: 'Rahul', text: 'Your platform really helped me with DSA!', likes: 24, avatar: '/student-1.png', color: '#3B82F6' },
   { id: 1, name: 'Divya', text: 'Finally found a simple way to prepare for placements.', likes: 18, avatar: '/student-2.png', color: '#10B981' },
   { id: 2, name: 'Sanjay', text: 'The coding practice is really useful 🔥', likes: 32, avatar: '/student-3.png', color: '#EC4899' },
   { id: 3, name: 'Priya', text: 'Very helpful for college students!', likes: 15, avatar: '/student-4.png', color: '#8B5CF6' },
-  { id: 4, name: 'Amit', text: 'Clear concepts, awesome mentorship! 🚀', likes: 41, avatar: '/student-5.png', color: '#EF4444' },
-  { id: 5, name: 'Komal', text: 'Aptitude section saved my screening rounds.', likes: 29, avatar: '/student-6.png', color: '#F59E0B' },
-  { id: 6, name: 'Rohan', text: 'Direct referrals to partner companies work!', likes: 37, avatar: '/student-7.png', color: '#06B6D4' },
-  { id: 7, name: 'Ananya', text: 'Best system design lectures out there.', likes: 22, avatar: '/student-8.png', color: '#10B981' },
-  { id: 8, name: 'Vikram', text: 'Mastered Java Full Stack in 6 months.', likes: 45, avatar: '/student-9.png', color: '#3B82F6' },
-  { id: 9, name: 'Shreya', text: 'Got offers from 2 product companies!', likes: 50, avatar: '/student-10.png', color: '#EC4899' },
-  { id: 10, name: 'Aditya', text: 'Mock interviews are super realistic.', likes: 27, avatar: '/student-11.png', color: '#F97316' },
-  { id: 11, name: 'Sneha', text: 'Interactive IDE makes practice so fun 💻', likes: 33, avatar: '/student-12.png', color: '#8B5CF6' }
+  { id: 4, name: 'Amit', text: 'JTM helped me turn my coding practice into real interview confidence.', likes: 41, avatar: '/student-5.png', color: '#EF4444' },
+  { id: 5, name: 'Komal', text: 'The structured programs made learning difficult concepts much easier.', likes: 29, avatar: '/student-6.png', color: '#F59E0B' },
+  { id: 6, name: 'Rohan', text: 'I stopped just preparing for placements and started preparing with confidence.', likes: 37, avatar: '/student-7.png', color: '#06B6D4' }
 ];
 
-// Helper to get random numbers within a range
-const getRandomInRange = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-// Helper to generate a new set of random offsets to vary positions in each set
-const generateOffsets = () => {
-  return [
-    { x: getRandomInRange(-15, 15), y: getRandomInRange(-10, 10) }, // Top
-    { x: getRandomInRange(-25, 10), y: getRandomInRange(-20, 15) }, // TL
-    { x: getRandomInRange(-10, 25), y: getRandomInRange(-20, 15) }, // TR
-    { x: getRandomInRange(-25, 10), y: getRandomInRange(-15, 25) }, // BL
-    { x: getRandomInRange(-10, 25), y: getRandomInRange(-15, 25) }  // BR
-  ];
-};
-
-// Swap function that ensures no immediate repeat of names in consecutive sets
-const getNextSetOfComments = (currentSet) => {
-  const currentNames = currentSet.map(c => c.name);
-  const available = allComments.filter(c => !currentNames.includes(c.name));
-  
-  const selected = [];
-  const pool = [...available];
-  
-  while (selected.length < 5 && pool.length > 0) {
-    const idx = Math.floor(Math.random() * pool.length);
-    selected.push(pool.splice(idx, 1)[0]);
+// Carousel Slides data: 5 slides with quoted headings and detailed descriptions
+const heroSlides = [
+  {
+    headline: [
+      { text: '"Unlock Your Career Potential"', highlight: false },
+      { text: ' with JTM Experts.', highlight: true }
+    ],
+    description: 'With mentorship from top industry professionals, JTM empowers you with career-enhancing skills and personalized guidance to achieve your goals.'
+  },
+  {
+    headline: [
+      { text: '"Master Coding"', highlight: false },
+      { text: ' with Structured Learning Pathways.', highlight: true }
+    ],
+    description: 'Our structured curriculum, combined with project-based learning, ensures you build a strong foundation and advance your technical expertise with confidence.'
+  },
+  {
+    headline: [
+      { text: '"Crack Your Dream Job"', highlight: false },
+      { text: " with JTM's Proven Approach.", highlight: true }
+    ],
+    description: "JTM provides expert-designed roadmaps, mock interviews, and placement assistance to help you land your dream job in top companies."
+  },
+  {
+    headline: [
+      { text: 'Learn ', highlight: true },
+      { text: '"Right Skill At The Right Time"', highlight: false },
+      { text: ' with JTM.', highlight: true }
+    ],
+    description: 'At JTM, we provide industry-relevant training that equips you with the right skills at the right time, helping you stay ahead in the competitive job market.'
+  },
+  {
+    headline: [
+      { text: '"Upskill"', highlight: false },
+      { text: ' with Practical Hands-On Learning.', highlight: true }
+    ],
+    description: 'Our hands-on approach ensures you gain real-world experience, preparing you to tackle technical challenges and excel in your career journey.'
   }
-  
+];
+
+// Flatten segments into a single string for typing
+const getFullText = (segments) => segments.map(s => s.text).join('');
+
+// Given a character index, find which segment and apply highlight
+const renderTypedText = (segments, charCount) => {
+  let remaining = charCount;
+  return segments.map((segment, i) => {
+    if (remaining <= 0) return null;
+    const visibleChars = segment.text.slice(0, remaining);
+    remaining -= segment.text.length;
+
+    // Split by newlines to insert <br /> tags if present
+    const parts = visibleChars.split('\n');
+    return (
+      <span key={i} className={segment.highlight ? 'text-highlight' : ''}>
+        {parts.map((part, j) => (
+          <React.Fragment key={j}>
+            {j > 0 && <br />}
+            {part}
+          </React.Fragment>
+        ))}
+      </span>
+    );
+  });
+};
+
+// Generate fixed positions around the center
+const fixedPositions = [
+  { top: '10%', left: '-15%' },
+  { top: '20%', right: '-25%' },
+  { bottom: '5%', left: '-15%' },
+  { bottom: '-5%', right: '-15%' }
+];
+
+const generateOffsets = () => fixedPositions;
+
+const getSequentialComments = (startIndex) => {
+  const selected = [];
+  for (let i = 0; i < 4; i++) {
+    selected.push(allComments[(startIndex + i) % allComments.length]);
+  }
   return selected;
 };
 
-// Define static exit directions (moving outwards from center)
-const exitDirections = [
-  { x: 0, y: -25 },   // Top (up)
-  { x: -20, y: -15 }, // TL (up-left)
-  { x: 20, y: -15 },  // TR (up-right)
-  { x: -20, y: 15 },  // BL (down-left)
-  { x: 20, y: 15 }    // BR (down-right)
-];
-
-// Position configurations matching quadrants/positions around central logo
-const quadrants = ['pos-top', 'pos-tl', 'pos-tr', 'pos-bl', 'pos-br'];
-
-const Typewriter = ({ words, loop = true, typingSpeed = 150, deletingSpeed = 100, delay = 1500 }) => {
-  const [text, setText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const i = loopNum % words.length;
-      const fullText = words[i];
-
-      if (isDeleting) {
-        setText(fullText.substring(0, text.length - 1));
-      } else {
-        setText(fullText.substring(0, text.length + 1));
-      }
-
-      if (!isDeleting && text === fullText) {
-        if (!loop && loopNum === words.length - 1) return;
-        setTimeout(() => setIsDeleting(true), delay);
-      } else if (isDeleting && text === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, isDeleting ? deletingSpeed : typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, words, typingSpeed, deletingSpeed, delay, loop]);
-
-  return (
-    <span className="typewriter-text">
-      {text}
-      <span className="cursor" style={{ borderRight: '2px solid currentColor', animation: 'blink 1s step-end infinite', paddingRight: '2px' }}>&nbsp;</span>
-    </span>
-  );
-};
-
 const HeroSection = () => {
-  const [displayedComments, setDisplayedComments] = useState(() => allComments.slice(0, 5));
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const [startIndex, setStartIndex] = useState(0);
+  const [displayedComments, setDisplayedComments] = useState(() => getSequentialComments(0));
   const [offsets, setOffsets] = useState(() => generateOffsets());
-  const [fadeClass, setFadeClass] = useState('fade-in');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Typewriter effect for 5 hero slides
+  useEffect(() => {
+    const currentSegments = heroSlides[headlineIndex].headline;
+    const fullText = getFullText(currentSegments);
+    const totalChars = fullText.length;
+
+    let timeout;
+
+    if (!isDeleting && charCount < totalChars) {
+      // Typing forward
+      timeout = setTimeout(() => {
+        setCharCount(prev => prev + 1);
+      }, 45);
+    } else if (!isDeleting && charCount >= totalChars) {
+      // Pause after fully typed
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, 3500);
+    } else if (isDeleting && charCount > 0) {
+      // Erasing
+      timeout = setTimeout(() => {
+        setCharCount(prev => prev - 1);
+      }, 25);
+    } else if (isDeleting && charCount === 0) {
+      // Move to next slide
+      setIsDeleting(false);
+      setHeadlineIndex(prev => (prev + 1) % heroSlides.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charCount, isDeleting, headlineIndex]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      // Step 1: Start exit transition (fade out and drift outwards)
-      setFadeClass('fade-out');
-      
-      // Step 2: Swap content and trigger entrance after exit duration (e.g. 450ms)
+    // Testimonial rotation timer
+    const commentTimer = setInterval(() => {
+      setIsTransitioning(true);
+
       setTimeout(() => {
-        setDisplayedComments(prev => getNextSetOfComments(prev));
+        setStartIndex(prev => {
+          const nextIndex = (prev + 4) % allComments.length;
+          setDisplayedComments(getSequentialComments(nextIndex));
+          return nextIndex;
+        });
         setOffsets(generateOffsets());
-        setFadeClass('fade-in');
-      }, 450);
-    }, 6000); // 5s visible + 1s transition (450ms fade-out + 450ms fade-in)
-    
-    return () => clearInterval(timer);
+        setIsTransitioning(false);
+      }, 600);
+    }, 5000);
+
+    return () => clearInterval(commentTimer);
   }, []);
 
-  // Handle fallback if profile photo fails to load
   const handleImageError = (e) => {
     e.target.style.display = 'none';
     const fallback = e.target.nextSibling;
@@ -131,129 +168,137 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="hero">
-      {/* <div className="hero-bg-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-      </div> */}
+    <section className="premium-hero">
+      <div className="premium-hero-background">
+        <div className="premium-grid-overlay"></div>
+        <div className="premium-glow-left"></div>
+        <div className="premium-glow-right"></div>
 
-      <div className="container hero-container">
-        <div className="hero-content">
-          <h1 className="h1 hero-title">
-            Learn Smart. Build Fast<br />
-            <span className="text-gradient">
-              <Typewriter words={['Code Better.', 'Think Bigger.', 'Scale Faster.']} />
-            </span> <br />
-            Get Hired.
-          </h1>
-          <p className="hero-subtitle text-muted">
-            Jet to Mastery is an all-in-one technology learning ecosystem. From structured courses to an interactive coding platform, master classes, and placement preparation.
-          </p>
+        {/* Decorative Coding Symbols */}
+        <span className="code-symbol symbol-1">{'{ }'}</span>
+        <span className="code-symbol symbol-3">{'( )'}</span>
+        <span className="code-symbol symbol-4">{'=>'}</span>
+        <span className="code-symbol symbol-6">{'[ ]'}</span>
+        <span className="code-symbol symbol-7">{'&&'}</span>
+        <span className="code-symbol symbol-8">{'<>'}</span>
+        <span className="code-symbol symbol-9">{'/*'}</span>
+        <span className="code-symbol symbol-10">{'#!'}</span>
+        <span className="code-symbol symbol-11">{'...'}</span>
+        <span className="code-symbol symbol-12">{'</>'}</span>
+      </div>
 
-          <div className="hero-actions">
-            <a href="#" className="btn btn-primary">Start Learning</a>
-            <a href="#" className="btn btn-secondary">Explore Programs</a>
+      <div className="premium-hero-container">
+
+        {/* LEFT CONTENT */}
+        <div className="premium-hero-content">
+          <div className="premium-micro-label animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            {/* THE CAREER-FIRST LEARNING PLATFORM */}
           </div>
 
-          <div className="hero-stats">
-            <div className="stat-item">
-              <h3 className="stat-number"><Odometer value="100k+" /></h3>
-              <p className="stat-label">Learners</p>
-            </div>
-            <div className="stat-item">
-              <h3 className="stat-number"><Odometer value="4000+" /></h3>
-              <p className="stat-label">Coding Problems</p>
-            </div>
-            <div className="stat-item">
-              <h3 className="stat-number"><Odometer value="500+" /></h3>
-              <p className="stat-label">Partner Colleges</p>
-            </div>
+          <div className="premium-headline-wrapper">
+            <h1 className="premium-headline">
+              {renderTypedText(heroSlides[headlineIndex].headline, charCount)}
+              <span className="typewriter-cursor">|</span>
+            </h1>
+          </div>
+
+          <div className="premium-description animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <p className="desc-body">
+              {heroSlides[headlineIndex].description}
+            </p>
+          </div>
+
+          <div className="premium-cta-group animate-fade-up" style={{ animationDelay: '0.5s' }}>
+            <a href="#" className="premium-btn btn-primary">Start Learning &rarr;</a>
+            <a href="#" className="premium-btn btn-secondary">Explore Programs</a>
           </div>
         </div>
 
-        {/* Visual area with ONE central logo and dynamic comments */}
-        <div className="hero-visual">
-          <div className="visual-wrapper">
-            
-            {/* CENTRAL LOGO Badge */}
-            <div className="central-logo-badge">
-              <div className="logo-glow"></div>
-              <div className="atom-ring ring-1">
-                <div className="orbit-node node-red"></div>
+        {/* RIGHT VISUAL */}
+        <div className="premium-hero-visual animate-scale-in" style={{ animationDelay: '0.6s' }}>
+          <div className="premium-image-wrapper">
+
+            {/* The Atom System (Rings + Nucleus) */}
+            <div className="atom-system">
+              <div className="atom-rings">
+                <div className="atom-ring ring-1">
+                  <div className="atom-node node-1">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+                <div className="atom-ring ring-2">
+                  <div className="atom-node node-2">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+                <div className="atom-ring ring-3">
+                  <div className="atom-node node-3">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
               </div>
-              <div className="atom-ring ring-2">
-                <div className="orbit-node node-blue"></div>
-              </div>
-              <div className="atom-ring ring-3">
-                <div className="orbit-node node-green"></div>
-              </div>
-              <div className="logo-circle">
-                <img 
-                  src={heroCenterImage} 
-                  alt="JTM platform" 
-                  className="central-hero-image"
-                />
+
+              {/* Nucleus Logo with Spinning Ring & Travelling Dot */}
+              <div className="atom-nucleus-wrapper">
+                <div className="nucleus-ring">
+                  <div className="nucleus-node">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+                <img src={studentPhoto} alt="JTM Nucleus" className="premium-student-image atom-nucleus" />
               </div>
             </div>
 
-            {/* FLOATING COMMENTS */}
+            {/* SOCIAL PROOF COMMENTS */}
             {displayedComments.map((comment, idx) => {
-              const currentOffset = offsets[idx] || { x: 0, y: 0 };
-              const exitDir = exitDirections[idx] || { x: 0, y: 0 };
-
-              // Transition transform styling: slide outward on fade-out, return on fade-in
-              const transformStyle = fadeClass === 'fade-out'
-                ? `translate(${currentOffset.x + exitDir.x}px, ${currentOffset.y + exitDir.y}px)`
-                : `translate(${currentOffset.x}px, ${currentOffset.y}px)`;
+              const currentOffset = offsets[idx] || { top: 50, left: 50 };
 
               return (
-                <div 
-                  key={comment.id}
-                  className={`comment-wrapper ${quadrants[idx]} ${fadeClass}`}
+                <div
+                  key={idx}
+                  className="poster-comment"
                   style={{
-                    transform: transformStyle,
-                    opacity: fadeClass === 'fade-out' ? 0 : 1
+                    top: currentOffset.top || 'auto',
+                    bottom: currentOffset.bottom || 'auto',
+                    left: currentOffset.left || 'auto',
+                    right: currentOffset.right || 'auto',
+                    animationDelay: `${idx * 0.15}s`
                   }}
                 >
-                  {/* Bobbing card container */}
-                  <div 
-                    className="comment-bubble-card"
-                    style={{
-                      animationDelay: `${idx * 0.4}s`,
-                      animationDuration: `${3.5 + idx * 0.6}s`
-                    }}
-                  >
-                    <div className="comment-profile">
-                      {/* Tries to load actual student photos, fallback to SVG initials */}
-                      <img 
-                        src={comment.avatar} 
+                  <div className={`poster-comment-content ${isTransitioning ? 'quote-fade-out' : 'quote-fade-in'}`}>
+                    <div className="poster-comment-profile">
+                      <img
+                        src={comment.avatar}
                         alt={comment.name}
-                        onError={handleImageError} 
+                        onError={handleImageError}
                         className="comment-avatar-img"
                       />
-                      <div 
+                      <div
                         className="comment-avatar-fallback"
                         style={{ backgroundColor: comment.color }}
                       >
                         {comment.name[0]}
                       </div>
                     </div>
-                    
-                    <div className="comment-text-content">
-                      <h4 className="comment-user-name">{comment.name}</h4>
+                    <div className="poster-comment-text">
+                      <span className="comment-user-name">{comment.name}</span>
                       <p className="comment-body-text">"{comment.text}"</p>
-                      <div className="comment-reaction">
-                        <span className="reaction-thumbs">👍</span>
-                        <span className="reaction-count text-muted">{comment.likes}</span>
-                      </div>
                     </div>
                   </div>
                 </div>
               );
             })}
-
           </div>
         </div>
+      </div>
+
+      {/* TRUST INDICATORS */}
+      <div className="premium-trust-row animate-fade-up" style={{ animationDelay: '0.7s' }}>
+        <span>100K+ Learners</span>
+        <span className="trust-dot">&bull;</span>
+        <span>4000+ Problems</span>
+        <span className="trust-dot">&bull;</span>
+        <span>500+ Colleges</span>
       </div>
     </section>
   );
