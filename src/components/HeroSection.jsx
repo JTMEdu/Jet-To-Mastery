@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Rocket } from 'lucide-react';
 import './HeroSection.css';
 import jtmLogo from '../assets/logo.png';
-import studentPhoto from '../assets/logo.png';
+import studentPhoto from '../assets/logo2.png';
 
 const allComments = [
   { id: 0, name: 'Rahul', text: 'Your platform really helped me with DSA!', likes: 24, avatar: '/student-1.png', color: '#3B82F6' },
@@ -13,26 +14,44 @@ const allComments = [
   { id: 6, name: 'Rohan', text: 'I stopped just preparing for placements and started preparing with confidence.', likes: 37, avatar: '/student-7.png', color: '#06B6D4' }
 ];
 
-// Headline data: each headline is an array of segments
-// { text, highlight } — highlight segments get the accent color
-const heroHeadlines = [
-  [
-    { text: 'MASTER\nTECHNOLOGY.\nBUILD ', highlight: false },
-    { text: 'YOUR FUTURE.', highlight: true }
-  ],
-  [
-    { text: 'LEARN\nSMART.\n', highlight: false },
-    { text: 'GET HIRED.', highlight: true }
-  ],
-  [
-    { text: 'BUILD\n', highlight: false },
-    { text: 'REAL SKILLS.', highlight: true },
-    { text: '\nGO FURTHER.', highlight: false }
-  ],
-  [
-    { text: 'TURN\nYOUR SKILLS\nINTO A\n', highlight: false },
-    { text: 'CAREER.', highlight: true }
-  ]
+// Carousel Slides data: 5 slides with quoted headings and detailed descriptions
+const heroSlides = [
+  {
+    headline: [
+      { text: '"Unlock Your Career Potential"', highlight: false },
+      { text: ' with JTM Experts.', highlight: true }
+    ],
+    description: 'With mentorship from top industry professionals, JTM empowers you with career-enhancing skills and personalized guidance to achieve your goals.'
+  },
+  {
+    headline: [
+      { text: '"Master Coding"', highlight: false },
+      { text: ' with Structured Learning Pathways.', highlight: true }
+    ],
+    description: 'Our structured curriculum, combined with project-based learning, ensures you build a strong foundation and advance your technical expertise with confidence.'
+  },
+  {
+    headline: [
+      { text: '"Crack Your Dream Job"', highlight: false },
+      { text: " with JTM's Proven Approach.", highlight: true }
+    ],
+    description: "JTM provides expert-designed roadmaps, mock interviews, and placement assistance to help you land your dream job in top companies."
+  },
+  {
+    headline: [
+      { text: 'Learn ', highlight: true },
+      { text: '"Right Skill At The Right Time"', highlight: false },
+      { text: ' with JTM.', highlight: true }
+    ],
+    description: 'At JTM, we provide industry-relevant training that equips you with the right skills at the right time, helping you stay ahead in the competitive job market.'
+  },
+  {
+    headline: [
+      { text: '"Upskill"', highlight: false },
+      { text: ' with Practical Hands-On Learning.', highlight: true }
+    ],
+    description: 'Our hands-on approach ensures you gain real-world experience, preparing you to tackle technical challenges and excel in your career journey.'
+  }
 ];
 
 // Flatten segments into a single string for typing
@@ -45,8 +64,8 @@ const renderTypedText = (segments, charCount) => {
     if (remaining <= 0) return null;
     const visibleChars = segment.text.slice(0, remaining);
     remaining -= segment.text.length;
-    
-    // Split by newlines to insert <br /> tags
+
+    // Split by newlines to insert <br /> tags if present
     const parts = visibleChars.split('\n');
     return (
       <span key={i} className={segment.highlight ? 'text-highlight' : ''}>
@@ -64,7 +83,7 @@ const renderTypedText = (segments, charCount) => {
 // Generate fixed positions around the center
 const fixedPositions = [
   { top: '10%', left: '-15%' },
-  { top: '20%', right: '-15%' },
+  { top: '20%', right: '-25%' },
   { bottom: '5%', left: '-15%' },
   { bottom: '-5%', right: '-15%' }
 ];
@@ -83,15 +102,15 @@ const HeroSection = () => {
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const [charCount, setCharCount] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   const [startIndex, setStartIndex] = useState(0);
   const [displayedComments, setDisplayedComments] = useState(() => getSequentialComments(0));
   const [offsets, setOffsets] = useState(() => generateOffsets());
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Typewriter effect for headlines
+  // Typewriter effect for 5 hero slides
   useEffect(() => {
-    const currentSegments = heroHeadlines[headlineIndex];
+    const currentSegments = heroSlides[headlineIndex].headline;
     const fullText = getFullText(currentSegments);
     const totalChars = fullText.length;
 
@@ -101,21 +120,21 @@ const HeroSection = () => {
       // Typing forward
       timeout = setTimeout(() => {
         setCharCount(prev => prev + 1);
-      }, 45); // Typing speed
+      }, 45);
     } else if (!isDeleting && charCount >= totalChars) {
       // Pause after fully typed
       timeout = setTimeout(() => {
         setIsDeleting(true);
-      }, 3000); // Hold for 3 seconds
+      }, 3500);
     } else if (isDeleting && charCount > 0) {
       // Erasing
       timeout = setTimeout(() => {
         setCharCount(prev => prev - 1);
-      }, 25); // Erase speed (faster)
+      }, 25);
     } else if (isDeleting && charCount === 0) {
-      // Move to next headline
+      // Move to next slide
       setIsDeleting(false);
-      setHeadlineIndex(prev => (prev + 1) % heroHeadlines.length);
+      setHeadlineIndex(prev => (prev + 1) % heroSlides.length);
     }
 
     return () => clearTimeout(timeout);
@@ -125,7 +144,7 @@ const HeroSection = () => {
     // Testimonial rotation timer
     const commentTimer = setInterval(() => {
       setIsTransitioning(true);
-      
+
       setTimeout(() => {
         setStartIndex(prev => {
           const nextIndex = (prev + 4) % allComments.length;
@@ -136,7 +155,7 @@ const HeroSection = () => {
         setIsTransitioning(false);
       }, 600);
     }, 5000);
-    
+
     return () => clearInterval(commentTimer);
   }, []);
 
@@ -157,10 +176,8 @@ const HeroSection = () => {
 
         {/* Decorative Coding Symbols */}
         <span className="code-symbol symbol-1">{'{ }'}</span>
-        {/* <span className="code-symbol symbol-2">{'< />'}</span> */}
         <span className="code-symbol symbol-3">{'( )'}</span>
         <span className="code-symbol symbol-4">{'=>'}</span>
-        {/* <span className="code-symbol symbol-5">{'//'}</span> */}
         <span className="code-symbol symbol-6">{'[ ]'}</span>
         <span className="code-symbol symbol-7">{'&&'}</span>
         <span className="code-symbol symbol-8">{'<>'}</span>
@@ -171,24 +188,23 @@ const HeroSection = () => {
       </div>
 
       <div className="premium-hero-container">
-        
+
         {/* LEFT CONTENT */}
         <div className="premium-hero-content">
           <div className="premium-micro-label animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            THE CAREER-FIRST LEARNING PLATFORM
+            {/* THE CAREER-FIRST LEARNING PLATFORM */}
           </div>
 
           <div className="premium-headline-wrapper">
             <h1 className="premium-headline">
-              {renderTypedText(heroHeadlines[headlineIndex], charCount)}
+              {renderTypedText(heroSlides[headlineIndex].headline, charCount)}
               <span className="typewriter-cursor">|</span>
             </h1>
           </div>
 
           <div className="premium-description animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            <p className="desc-lead">Learn the skills that turn ambition into a career.</p>
             <p className="desc-body">
-              Master DSA, development, aptitude and interview skills through practical learning designed to help you build, practice and get placement-ready.
+              {heroSlides[headlineIndex].description}
             </p>
           </div>
 
@@ -201,15 +217,45 @@ const HeroSection = () => {
         {/* RIGHT VISUAL */}
         <div className="premium-hero-visual animate-scale-in" style={{ animationDelay: '0.6s' }}>
           <div className="premium-image-wrapper">
-            <img src={studentPhoto} alt="Hero Visual" className="premium-student-image" />
-            
+
+            {/* The Atom System (Rings + Nucleus) */}
+            <div className="atom-system">
+              <div className="atom-rings">
+                <div className="atom-ring ring-1">
+                  <div className="atom-node node-1">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+                <div className="atom-ring ring-2">
+                  <div className="atom-node node-2">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+                <div className="atom-ring ring-3">
+                  <div className="atom-node node-3">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Nucleus Logo with Spinning Ring & Travelling Dot */}
+              <div className="atom-nucleus-wrapper">
+                <div className="nucleus-ring">
+                  <div className="nucleus-node">
+                    <Rocket className="rocket-icon" />
+                  </div>
+                </div>
+                <img src={studentPhoto} alt="JTM Nucleus" className="premium-student-image atom-nucleus" />
+              </div>
+            </div>
+
             {/* SOCIAL PROOF COMMENTS */}
             {displayedComments.map((comment, idx) => {
               const currentOffset = offsets[idx] || { top: 50, left: 50 };
-              
+
               return (
-                <div 
-                  key={idx} // Use position index instead of comment.id so the card stays put
+                <div
+                  key={idx}
                   className="poster-comment"
                   style={{
                     top: currentOffset.top || 'auto',
@@ -221,13 +267,13 @@ const HeroSection = () => {
                 >
                   <div className={`poster-comment-content ${isTransitioning ? 'quote-fade-out' : 'quote-fade-in'}`}>
                     <div className="poster-comment-profile">
-                      <img 
-                        src={comment.avatar} 
+                      <img
+                        src={comment.avatar}
                         alt={comment.name}
-                        onError={handleImageError} 
+                        onError={handleImageError}
                         className="comment-avatar-img"
                       />
-                      <div 
+                      <div
                         className="comment-avatar-fallback"
                         style={{ backgroundColor: comment.color }}
                       >

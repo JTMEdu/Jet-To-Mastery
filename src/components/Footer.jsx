@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageCircle, Briefcase, Code, Video } from 'lucide-react';
 import './Footer.css';
-import siteLogo from '../assets/logo.png';
+import siteLogo from '../assets/logo2.png';
 
 const Footer = () => {
   return (
